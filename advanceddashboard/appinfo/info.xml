@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>advanceddashboard</id>
+    <name>Advanced Dashboard</name>
+    <summary>Advanced Dashbord</summary>
+    <description><![CDATA[a Simple Advanced Dashboard]]></description>
+    <version>1.0</version>
+    <licence>agpl</licence>
+    <author mail="youssefbounit768@gmail.com" homepage="https://drivetest.cnrst.ma">Youssef Bounit</author>
+    <namespace>AdvancedDashboard</namespace>
+    <category>dashboard</category>
+    <bugs>https://youssef-example.org</bugs>
+    <dependencies>
+        <nextcloud min-version="22" max-version="22"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Advanced Dashboard</name>
+            <route>advanceddashboard.page.index</route>
+        </navigation>
+    </navigations>
+</info>

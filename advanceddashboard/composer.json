@@ -1,0 +1,15 @@
+{
+    "name": "Advanced Dashboard",
+    "description": "Advanced Dashbord",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Youssef Bounit"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}

@@ -1,0 +1,112 @@
+#app-content{
+	width: 100%;
+}
+#app{
+	width: calc(100% - 300px);
+}
+.content-container{
+	width: 100%;
+}
+.SharedLinks-content-container{
+	width: 100%;
+}
+
+.files-count-card{
+	padding: 20px;
+	border:1px solid rgba(0, 0, 0, 0.445);
+	border-radius: 6px;
+	margin:10px;
+}
+.table_container{
+	margin:10px;
+	margin-bottom: 40px;
+	padding: 20px;
+	border:1px solid rgba(0, 0, 0, 0.445);
+	border-radius: 6px;
+}
+
+.daterangeinputs{
+	padding: 0px 20px;
+	border:1px solid rgba(0, 0, 0, 0.445);
+	border-radius: 6px;
+	margin: 0px 10px;
+}
+.active-users-container{
+	padding: 10px 20px;
+	border:1px solid rgba(0, 0, 0, 0.445);
+	border-radius: 6px;
+	margin: 10px 10px;
+}
+.active-users-container h1{
+	font-size: 20px;
+	font-weight: bold;
+}
+.active-users-container p{
+	padding-top: 5px;
+}
+.active-users-container b{
+	font-size: 17px;
+}
+.daterangeinputs{
+	width: fit-content;
+}
+.daterangeinputs form span input{
+	width: 200px;
+}
+.totalSahredFiles{
+	display: flex;
+	width: 100%;
+}
+.totalSahredFiles > .files-count-card{
+	width: 50%;
+}
+.side-Bar-nav ul li a{
+	padding: 10px 25px;
+	display: flex;
+	align-items: center;
+}
+.side-Bar-nav ul li a span{
+	padding-left: 20px;
+}
+.side-Bar-nav ul li:hover{
+	background-color: #e2e2e2;
+}
+.dashboard-sidebar-icon{
+	width: 25px;
+	height: 25px;
+}
+.links-shared-icon{
+	width: 17px;
+	height: 17px;
+}
+.errore-please-date{
+	width: 98%;
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	height: 600px;
+	padding: 0px 20px;
+	border:1px solid rgba(0, 0, 0, 0.445);
+	border-radius: 6px;
+	margin: 0px 10px;
+}
+
+.errore-please-date div {
+	position: relative;
+}
+.errore-please-date div span {
+	position: relative;
+	display: inline-block;
+	font-size: 2.5vw;
+	font-weight: bold;
+	color: rgb(0, 0, 0);
+	animation: flip 3s infinite;
+	animation-delay: calc(.4s * var(--i))
+}
+
+@keyframes flip {
+	0%,80% {
+		transform: rotateY(360deg) 
+	}
+}
