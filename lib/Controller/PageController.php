@@ -29,13 +29,13 @@ class PageController extends Controller {
 	
 	private $userId;
 	private $config;
-    private $userManager;
+        private $userManager;
 	private $rootFolder;
 	private $session;
 	private $timeFactory;
 	private $connection;
 	private $sessionManager;
-
+	
 	public function __construct(
 		$AppName,
 		IRequest $request,
@@ -46,12 +46,13 @@ class PageController extends Controller {
 		ISession $session,
 		ITimeFactory $timeFactory,
 		IDBConnection $connection
-		){
+		
+	){
 
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;	
 		$this->config = $config;
-        $this->userManager = $userManager;
+        	$this->userManager = $userManager;
 		$this->rootFolder = $rootFolder;
 		$this->session = $session;
 		$this->timeFactory = $timeFactory;
@@ -59,10 +60,9 @@ class PageController extends Controller {
 
 	}
 
-	public function getFilesCountInDirectory($elements)
-	{
+	public function getFilesCountInDirectory($elements){
+		
 		$count = 0;
-
 		foreach ($elements as $content) {
 
 			if ($content instanceof File) {
@@ -91,57 +91,57 @@ class PageController extends Controller {
 	public function index(){
 
 		$users = $this->userManager->search('');
-        $userQuotas = [];
+                $userQuotas = [];
 		$db = \OC::$server->getDatabaseConnection();
 
         foreach ($users as $user) {
-            $uid = $user->getUID();
-            $quota = $this->config->getUserValue($uid, 'files', 'quota');
+		    $uid = $user->getUID();
+		    $quota = $this->config->getUserValue($uid, 'files', 'quota');
 
-            $usedSpace = 0;
-            $filecount = 0;
-			$linkscount = 0;
-			$linkscountbayemail = 0;
+		    $usedSpace = 0;
+		    $filecount = 0;
+				$linkscount = 0;
+				$linkscountbayemail = 0;
+
+		    $userFolder = $this->rootFolder->getUserFolder($user->getUID());
+		    $rootFolderContents = $userFolder->getDirectoryListing();
+
+				$count = $this->getFilesCountInDirectory($rootFolderContents);
+
+		    foreach ($rootFolderContents as $content) {
+			if ($content instanceof FileInfo) {
+			    $usedSpace += $content->getSize();
+			    $filecount++;
+			 }
+		     }
 			
-            $userFolder = $this->rootFolder->getUserFolder($user->getUID());
-            $rootFolderContents = $userFolder->getDirectoryListing();
+		$query = $db->prepare('SELECT count(*) FROM oc_share WHERE uid_owner = ? AND share_type = 3');
+		$query->bindValue(1, $uid);
+		$query->execute();
+		$linkscount = $query->fetchColumn();
 
-			$count = $this->getFilesCountInDirectory($rootFolderContents);
+		$sqlstate = $db->prepare('SELECT COUNT(*) FROM oc_share WHERE uid_owner = ? AND share_type = 0');
+		$sqlstate->bindValue(1, $uid);
+		$sqlstate->execute();
+		$linkscountbayemail = $sqlstate->fetchColumn();
+		
+	        $userQuotas[$uid] = [
+		  'displayName' => $user->getDisplayName(),
+		  'usedSpace' => $usedSpace,
+		  'filecount' => $count,
+		  'linkscount' => $linkscount,
+		  'linkscountbayemail' => $linkscountbayemail,
+	        ];
 
-            foreach ($rootFolderContents as $content) {
-                if ($content instanceof FileInfo) {
-                    $usedSpace += $content->getSize();
-                    $filecount++;
-                }
-            }
+		$topUsersByFilesCount[$uid] = [
+                   'displayName' => $user->getDisplayName(),
+                   'filecount' => $count,
+                ];
 
-			
-			$query = $db->prepare('SELECT count(*) FROM oc_share WHERE uid_owner = ? AND share_type = 3');
-			$query->bindValue(1, $uid);
-			$query->execute();
-			$linkscount = $query->fetchColumn();
-			
-			$sqlstate = $db->prepare('SELECT COUNT(*) FROM oc_share WHERE uid_owner = ? AND share_type = 0');
-			$sqlstate->bindValue(1, $uid);
-			$sqlstate->execute();
-			$linkscountbayemail = $sqlstate->fetchColumn();
-            $userQuotas[$uid] = [
-                'displayName' => $user->getDisplayName(),
-                'usedSpace' => $usedSpace,
-                'filecount' => $count,
-				'linkscount' => $linkscount,
-				'linkscountbayemail' => $linkscountbayemail,
-            ];
-
-			$topUsersByFilesCount[$uid] = [
-                'displayName' => $user->getDisplayName(),
-                'filecount' => $count,
-            ];
-
-			$topUsersByUsedSpace[$uid] = [
-                'displayName' => $user->getDisplayName(),
-                'usedSpace' => $usedSpace,
-            ];
+		$topUsersByUsedSpace[$uid] = [
+                    'displayName' => $user->getDisplayName(),
+                    'usedSpace' => $usedSpace,
+                ];
 			
         }
 		$sqlSahredFiles = $db->prepare('SELECT COUNT(*) FROM oc_share WHERE share_type = 3');
