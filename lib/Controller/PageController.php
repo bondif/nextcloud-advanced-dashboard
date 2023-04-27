@@ -158,9 +158,6 @@ class PageController extends Controller {
 
 		$this->sortByKey($topUsersByUsedSpace, 'usedSpace', true);
 
-		// echo "<pre>";
-		// var_dump($totalSahredFiles);
-		// echo "</pre>";
 		return new TemplateResponse('advanceddashboard', 'index', [
 			'data'=>$userQuotas,
 			'topUsersByFilesCount' => $topUsersByFilesCount,
@@ -350,4 +347,3 @@ class PageController extends Controller {
 
 	
 }
-
