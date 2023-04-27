@@ -26,15 +26,14 @@ use OCP\AppFramework\Http\RedirectResponse;
 
 
 class PageController extends Controller {
+	
 	private $userId;
-
 	private $config;
     private $userManager;
 	private $rootFolder;
 	private $session;
 	private $timeFactory;
 	private $connection;
-
 	private $sessionManager;
 
 	public function __construct(
@@ -50,8 +49,7 @@ class PageController extends Controller {
 		){
 
 		parent::__construct($AppName, $request);
-		$this->userId = $UserId;
-		
+		$this->userId = $UserId;	
 		$this->config = $config;
         $this->userManager = $userManager;
 		$this->rootFolder = $rootFolder;

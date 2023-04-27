@@ -4,13 +4,16 @@
     <id>advanceddashboard</id>
     <name>Advanced Dashboard</name>
     <summary>Advanced Dashbord</summary>
-    <description><![CDATA[a Simple Advanced Dashboard]]></description>
+    <description><![CDATA[Advanced Statistics Dashboard]]></description>
     <version>1.0</version>
     <licence>agpl</licence>
     <author mail="youssefbounit768@gmail.com" homepage="https://drivetest.cnrst.ma">Youssef Bounit</author>
+    <url>
+        <website>https://github.com/bondif/nextcloud-advanced-dashboard</website>
+    </url>
     <namespace>AdvancedDashboard</namespace>
     <category>dashboard</category>
-    <bugs>https://youssef-example.org</bugs>
+    <bugs>https://github.com/bondif/nextcloud-advanced-dashboard/issues</bugs>
     <dependencies>
         <nextcloud min-version="22" max-version="22"/>
     </dependencies>
