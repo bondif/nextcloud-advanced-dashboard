@@ -9,10 +9,10 @@
  */
 return [
     'routes' => [
-	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-	   ['name' => 'page#active', 'url' => '/usersactive', 'verb' => 'GET'],
-       ['name' => 'page#postactive', 'url' => '/usersactive/active', 'verb' => 'POST'],
-       ['name' => 'page#filesByTime', 'url' => '/filesbytime','verb' => 'GET'],
-       ['name' => 'page#filesByTimePOST', 'url' => '/filesbytime/post','verb' => 'POST'],
+	['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+	['name' => 'page#active', 'url' => '/usersactive', 'verb' => 'GET'],
+       	['name' => 'page#postactive', 'url' => '/usersactive/active', 'verb' => 'POST'],
+       	['name' => 'page#filesByTime', 'url' => '/filesbytime','verb' => 'GET'],
+       	['name' => 'page#filesByTimePOST', 'url' => '/filesbytime/post','verb' => 'POST'],
     ]
 ];
