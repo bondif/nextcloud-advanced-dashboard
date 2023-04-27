@@ -1,5 +1,5 @@
 <?php
-namespace OCA\YourAppName\Settings;
+namespace OCA\AdvancedDashboard\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\Settings\ISettings;
